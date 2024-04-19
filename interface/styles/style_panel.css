@@ -1,0 +1,81 @@
+* {
+    border-radius: 10px;
+    color: white;
+
+}
+
+#MainFrame {
+    background-color: #202020;
+}
+
+#frame_title {
+    background-color: #353535;
+}
+
+
+
+#frame_body {
+    background-color: rgb(54, 54, 54);
+}
+
+#frame_exel {
+    background-color: rgb(73, 73, 73);
+}
+
+#label_title {
+    font-size: xx-large;
+    font-size: 25px;
+    font-family: "Sketch";
+    color: rgb(236, 236, 236);
+}
+
+QPushButton {
+    color: white;
+    background-color: #1a1a1a;
+    padding: 10px;
+    border: 2px solid rgb(185, 185, 185);
+}
+
+QPushButton:hover {
+    border: 2px solid transparent;
+    background-color: rgb(185, 185, 185);
+    color: rgb(58, 58, 58);
+}
+
+#tableExel {
+    background-color: rgb(85, 85, 85);
+    font-family: "Roboto Slab";
+    font-size: 15px;
+}
+
+QScrollBar:vertical,
+QScrollBar:horizontal {
+    background: #f0f0f0;
+    width: 10px;
+    border-radius: 10px;
+}
+
+QScrollBar:horizontal {
+    height: 10px;
+}
+
+QScrollBar::handle:vertical,
+QScrollBar::handle:horizontal {
+    background: #c0c0c0;
+    max-width: 10px;
+}
+
+QScrollBar::up-arrow:vertical,
+QScrollBar::down-arrow:vertical,
+QScrollBar::up-arrow:horizontal QScrollBar::down-arrow:horizontal {
+    background: #8f8f8f;
+    border-radius: 10px;
+    border: none;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical,
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background: #343434;
+}
