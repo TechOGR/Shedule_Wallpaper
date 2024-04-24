@@ -1,6 +1,5 @@
 import sys
 import tracemalloc
-
 from flask import (
     Flask
 )
@@ -44,11 +43,10 @@ class MainServer:
         self.routes()
         
     def initServer(self):
-        hilo = Thread(target=self.initServer2)
-        hilo.setName("threadServer")
-        hilo.start()
-        # self.initServer2()
-        
+        self.hilo = Thread(target=self.initServer2)
+        self.hilo.setName("threadServer")
+        self.hilo.start()
+       
     def initServer2(self):
         HOST = "localhost"
         PORT = "5000"
@@ -56,6 +54,13 @@ class MainServer:
         self.app.run(HOST, PORT)
         sys.stdout = open("./output.txt", "w")
         
+    
+    def stopServer(self):
+        self.stopServer2()
+        
+    def stopServer2(self):
+
+        self.hilo.__stop()
     
     def routes(self):
         Router(self.app, self.full_path)
