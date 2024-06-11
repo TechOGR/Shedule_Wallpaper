@@ -10,7 +10,8 @@ from PyQt5.QtGui import (
     QPainter,
     QPainterPath,
     QRegion,
-    QPixmap
+    QPixmap,
+    QImage
 )
 
 
@@ -69,7 +70,7 @@ class MainWindow(QFrame):
         self.pathUIface = join(self.full_path, "interface", "Panel_UI.ui")
         
         self.path_icons = join(self.full_path, "src", "images")
-        window_icon = QIcon(join(self.path_icons, "logo_wall.png"))
+        window_icon = QIcon(join(self.path_icons, "tiny_logo.png"))
         
         self.setWindowIcon(window_icon)
         
@@ -115,12 +116,25 @@ class MainWindow(QFrame):
         iconLabelTopLeft.load(join(self.path_icons, "min_size_logo.png"))
         self.label_icon_app.setPixmap(iconLabelTopLeft)
         
-        self.btn_youtube.clicked.connect(self.openSocials)
-        
-    def openSocials(self):
-        if self.btn_youtube.isChecked():
-            openLinks('youtube')
-        
+        self.btn_youtube.clicked.connect(self.openYoutube)
+        self.btn_github.clicked.connect(self.openGithub)
+        self.btn_facebook.clicked.connect(self.openFacebook)
+        self.btn_twitter.clicked.connect(self.openTwitter)
+        self.btn_instagram.clicked.connect(self.openInstagram)
+    
+    # Opening Socials Networks
+    def openYoutube(self):
+        openLinks('youtube')
+    def openFacebook(self):
+        openLinks('facebook')
+    def openGithub(self):
+        openLinks('github')
+    def openInstagram(self):
+        openLinks('instagram')
+    def openTwitter(self):
+        openLinks('twitter')
+    
+    
     def functionExit(self):
         self.close()
         sys.exit(0)
