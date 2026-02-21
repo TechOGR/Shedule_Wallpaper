@@ -1,5 +1,41 @@
-__pycache__
-build
-dist
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
 *.spec
-*.txt
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Node
+client/node_modules/
+client/.vite/
+
+# Compiled client output (built by Vite into server/static/)
+server/static/js/
+server/static/css/
+server/static/assets/
+server/static/img/
+!server/static/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+output.txt

@@ -1,0 +1,405 @@
+/* ══════════════════════════════════════════════
+   Trash Icon (bottom-right corner)
+   ══════════════════════════════════════════════ */
+
+.recycleBin {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    top: calc(100vh - 150px);
+    left: calc(100vw - 150px);
+    border-radius: 20px 20px 10px 10px;
+    transition: all .4s ease;
+    cursor: pointer;
+    z-index: 50;
+}
+
+.recycleBin:hover {
+    transform: scale(1.08);
+    filter: brightness(1.2);
+}
+
+.recycleBin .img_trash {
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 100%;
+    scale: 2;
+}
+
+.recycleBin-container-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.recycleText {
+    flex-grow: 1;
+    margin-top: 3px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recycleBin-container-items div span {
+    display: inline-block;
+    position: relative;
+    font-size: 25px;
+    font-family: 'Arial Rounded MT', Arial, sans-serif;
+    text-align: center;
+    text-shadow: 0 0 2px white, 0 0 15px white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: wavy 3s infinite;
+    animation-delay: calc(.3s * var(--i));
+}
+
+#txtFile, #txtSize {
+    font-size: 17px;
+    list-style: none;
+}
+
+
+/* ══════════════════════════════════════════════
+   Overlay
+   ══════════════════════════════════════════════ */
+
+.rb-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s ease;
+}
+
+.rb-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* ══════════════════════════════════════════════
+   Popup – Glassmorphism panel
+   ══════════════════════════════════════════════ */
+
+.rb-popup {
+    position: fixed;
+    z-index: 100;
+    bottom: 160px;
+    right: 140px;
+    width: 370px;
+    max-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow: hidden;
+
+    /* Glass effect */
+    background: rgba(20, 20, 35, 0.45);
+    backdrop-filter: blur(24px) saturate(1.6);
+    -webkit-backdrop-filter: blur(24px) saturate(1.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    /* Hidden by default */
+    opacity: 0;
+    transform: translateY(30px) scale(0.92);
+    pointer-events: none;
+    transition:
+        opacity .35s cubic-bezier(.4, 0, .2, 1),
+        transform .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.rb-popup.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+
+/* ── Header ── */
+
+.rb-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 10px;
+}
+
+.rb-popup-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
+}
+
+.rb-btn-close {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: #ccc;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.rb-btn-close:hover {
+    background: rgba(255, 60, 60, 0.35);
+    border-color: rgba(255, 60, 60, 0.5);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+
+/* ── Divider ── */
+
+.rb-divider {
+    height: 1px;
+    margin: 0 18px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15) 30%,
+        rgba(255, 255, 255, 0.15) 70%,
+        transparent
+    );
+}
+
+
+/* ── Body (scrollable file list) ── */
+
+.rb-popup-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Custom scrollbar */
+.rb-popup-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.rb-popup-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rb-popup-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+.rb-popup-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* ── File item ── */
+
+.rb-file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all .25s ease;
+}
+
+.rb-file-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.rb-file-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+}
+
+.rb-file-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rb-file-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+}
+
+.rb-file-path {
+    font-size: 11px;
+    color: rgba(200, 210, 230, 0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ── Restore button ── */
+
+.rb-btn-restore {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    border: 1px solid rgba(100, 220, 160, 0.25);
+    border-radius: 12px;
+    background: rgba(100, 220, 160, 0.08);
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.rb-btn-restore:hover {
+    background: rgba(100, 220, 160, 0.2);
+    border-color: rgba(100, 220, 160, 0.45);
+    box-shadow: 0 0 12px rgba(100, 220, 160, 0.2);
+    transform: scale(1.08);
+}
+
+.rb-btn-restore:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ── Footer ── */
+
+.rb-popup-footer {
+    padding: 10px 16px 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.rb-btn-empty {
+    padding: 8px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    border: 1px solid rgba(255, 70, 70, 0.35);
+    border-radius: 14px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 50, 50, 0.2),
+        rgba(200, 30, 80, 0.25)
+    );
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.rb-btn-empty:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 50, 50, 0.4),
+        rgba(200, 30, 80, 0.45)
+    );
+    border-color: rgba(255, 70, 70, 0.6);
+    box-shadow: 0 0 20px rgba(255, 50, 50, 0.25);
+    transform: scale(1.04);
+}
+
+
+/* ── Empty state ── */
+
+.rb-empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px 0;
+    opacity: 0.6;
+}
+
+.rb-empty-icon {
+    font-size: 56px;
+    filter: grayscale(0.4);
+}
+
+.rb-empty-state p {
+    font-size: 16px;
+    color: rgba(200, 210, 230, 0.6);
+    font-weight: 500;
+}
+
+
+/* ── Loading state ── */
+
+.rb-loading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 0;
+}
+
+.rb-loading p {
+    font-size: 14px;
+    color: rgba(200, 210, 230, 0.5);
+}
+
+.rb-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: rb-spin .7s linear infinite;
+}
+
+@keyframes rb-spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* ── Wavy text animation ── */
+
+@keyframes wavy {
+    0%, 40%, 100% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(-4px) scale(1.2);
+    }
+}

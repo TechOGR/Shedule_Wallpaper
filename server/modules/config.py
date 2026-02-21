@@ -8,10 +8,11 @@ DEFAULT_CONFIG = {
     "activeWeek": "A"
 }
 
+
 class AppConfig:
 
     def __init__(self, full_path):
-        self.config_path = join(full_path, "src", "documents", "app_config.json")
+        self.config_path = join(full_path, "data", "documents", "app_config.json")
         self._config = self._load()
 
     def _load(self):
