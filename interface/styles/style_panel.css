@@ -1,81 +1,322 @@
-* {
-    border-radius: 10px;
-    color: white;
+/* ══════════════════════════════════════════════════
+   Glass Blur Theme – Schedule Wallpaper
+   ══════════════════════════════════════════════════ */
 
+* {
+    border-radius: 8px;
+    color: rgba(230, 235, 255, 0.92);
+    font-family: "Segoe UI", "Arial", sans-serif;
 }
+
+
+/* ── Main Frame (transparent – painted in code) ── */
 
 #MainFrame {
-    background-color: #202020;
-}
-
-#frame_title {
-    background-color: #353535;
+    background: transparent;
 }
 
 
+/* ── Top bar ── */
 
-#frame_body {
-    background-color: rgb(54, 54, 54);
-}
-
-#frame_exel {
-    background-color: rgb(73, 73, 73);
+#frame_top {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 0;
 }
 
 #label_title {
-    font-size: xx-large;
-    font-size: 25px;
-    font-family: "Sketch";
-    color: rgb(236, 236, 236);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.90);
 }
 
-QPushButton {
+#btn_exit {
+    background: rgba(255, 60, 60, 0.55);
+    border: 1px solid rgba(255, 60, 60, 0.3);
+    border-radius: 6px;
     color: white;
-    background-color: #1a1a1a;
-    padding: 10px;
-    border: 2px solid rgb(185, 185, 185);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0;
+}
+#btn_exit:hover {
+    background: rgba(255, 40, 40, 0.85);
+}
+
+#btn_minimize {
+    background: rgba(255, 200, 40, 0.50);
+    border: 1px solid rgba(255, 200, 40, 0.3);
+    border-radius: 6px;
+    color: rgba(30, 30, 30, 0.9);
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+}
+#btn_minimize:hover {
+    background: rgba(255, 200, 40, 0.85);
+}
+
+
+/* ── Social buttons row ── */
+
+#frame_title {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0;
+}
+
+#btn_youtube, #btn_facebook, #btn_twitter,
+#btn_instagram, #btn_github {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 13px;
+}
+#btn_youtube:hover, #btn_facebook:hover, #btn_twitter:hover,
+#btn_instagram:hover, #btn_github:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ── Body ── */
+
+#frame_body {
+    background: transparent;
+    border-radius: 0;
+}
+
+
+/* ── Options panel (checkboxes, radios, server buttons) ── */
+
+#frame_buttons {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 6px;
+}
+
+
+/* ── Checkboxes ── */
+
+QCheckBox {
+    spacing: 8px;
+    font-size: 13px;
+    color: rgba(210, 220, 240, 0.85);
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 2px solid rgba(140, 160, 220, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+QCheckBox::indicator:checked {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 rgba(100, 140, 255, 0.7),
+        stop:1 rgba(160, 100, 255, 0.7));
+    border-color: rgba(130, 160, 255, 0.6);
+}
+
+QCheckBox::indicator:hover {
+    border-color: rgba(160, 180, 255, 0.6);
+}
+
+
+/* ── Radio Buttons ── */
+
+QRadioButton {
+    spacing: 8px;
+    font-size: 13px;
+    color: rgba(210, 220, 240, 0.85);
+}
+
+QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    border: 2px solid rgba(140, 160, 220, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+QRadioButton::indicator:checked {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 rgba(100, 220, 160, 0.6),
+        stop:1 rgba(60, 180, 220, 0.6));
+    border-color: rgba(100, 200, 170, 0.5);
+}
+
+QRadioButton::indicator:hover {
+    border-color: rgba(120, 200, 180, 0.5);
+}
+
+
+/* ── Generic Push Buttons ── */
+
+QPushButton {
+    color: rgba(230, 235, 255, 0.90);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 QPushButton:hover {
-    border: 2px solid transparent;
-    background-color: rgb(185, 185, 185);
-    color: rgb(58, 58, 58);
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.20);
+    color: white;
 }
+
+QPushButton:pressed {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ── Server Init/Stop buttons ── */
+
+#btn_start_server {
+    background: rgba(80, 200, 120, 0.15);
+    border: 1px solid rgba(80, 200, 120, 0.25);
+    color: rgba(140, 255, 180, 0.9);
+    font-weight: 600;
+}
+#btn_start_server:hover {
+    background: rgba(80, 200, 120, 0.30);
+    border-color: rgba(80, 200, 120, 0.45);
+}
+
+#btn_stop_server {
+    background: rgba(255, 70, 70, 0.15);
+    border: 1px solid rgba(255, 70, 70, 0.25);
+    color: rgba(255, 140, 140, 0.9);
+    font-weight: 600;
+}
+#btn_stop_server:hover {
+    background: rgba(255, 70, 70, 0.30);
+    border-color: rgba(255, 70, 70, 0.45);
+}
+
+
+/* ── Configurar / Guardar buttons ── */
+
+#btnConfig {
+    background: rgba(100, 140, 255, 0.12);
+    border: 1px solid rgba(100, 140, 255, 0.20);
+    color: rgba(160, 190, 255, 0.95);
+    font-weight: 600;
+}
+#btnConfig:hover {
+    background: rgba(100, 140, 255, 0.28);
+    border-color: rgba(100, 140, 255, 0.40);
+}
+
+#btnSave {
+    background: rgba(160, 100, 255, 0.12);
+    border: 1px solid rgba(160, 100, 255, 0.20);
+    color: rgba(200, 170, 255, 0.95);
+    font-weight: 600;
+}
+#btnSave:hover {
+    background: rgba(160, 100, 255, 0.28);
+    border-color: rgba(160, 100, 255, 0.40);
+}
+
+
+/* ── Excel area ── */
+
+#frame_exel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+}
+
+#frame_6 {
+    background: transparent;
+}
+
+#frame_5 {
+    background: transparent;
+}
+
+
+/* ── Table ── */
 
 #tableExel {
-    background-color: rgb(85, 85, 85);
-    font-family: "Roboto Slab";
-    font-size: 15px;
-}
-
-QScrollBar:vertical,
-QScrollBar:horizontal {
-    background: #f0f0f0;
-    width: 10px;
+    background-color: rgba(15, 15, 25, 0.5);
+    alternate-background-color: rgba(25, 25, 40, 0.4);
+    gridline-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
+    font-family: "Segoe UI", "Roboto", sans-serif;
+    font-size: 13px;
+    selection-background-color: rgba(100, 140, 255, 0.25);
+    selection-color: white;
+}
+
+QTableWidget::item {
+    padding: 4px;
+    border: none;
+    border-radius: 0;
+}
+
+QTableWidget::item:selected {
+    background: rgba(100, 140, 255, 0.20);
+}
+
+QHeaderView::section {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(200, 210, 240, 0.8);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 0;
+}
+
+
+/* ── Scrollbars ── */
+
+QScrollBar:vertical {
+    background: rgba(0, 0, 0, 0.15);
+    width: 8px;
+    border-radius: 4px;
+    margin: 2px;
 }
 
 QScrollBar:horizontal {
-    height: 10px;
+    background: rgba(0, 0, 0, 0.15);
+    height: 8px;
+    border-radius: 4px;
+    margin: 2px;
 }
 
 QScrollBar::handle:vertical,
 QScrollBar::handle:horizontal {
-    background: #c0c0c0;
-    max-width: 10px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    min-height: 30px;
 }
 
-QScrollBar::up-arrow:vertical,
-QScrollBar::down-arrow:vertical,
-QScrollBar::up-arrow:horizontal QScrollBar::down-arrow:horizontal {
-    background: #8f8f8f;
-    border-radius: 10px;
-    border: none;
+QScrollBar::handle:vertical:hover,
+QScrollBar::handle:horizontal:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+    height: 0;
+    width: 0;
 }
 
 QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical,
 QScrollBar::add-page:horizontal,
 QScrollBar::sub-page:horizontal {
-    background: #343434;
+    background: transparent;
 }

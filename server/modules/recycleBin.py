@@ -79,9 +79,10 @@ class RecycleBin:
         else:
             return 'Está vacía'
     
-    # Me quedé por Aquí
-    def restoreFile(self,name, path):
-        rb = recycle_bin()
-        rb.undelete(path[0])
-        print(type(path))
-        # rb.undelete(path.lower())
+    def restoreFile(self, path):
+        from winshell import undelete
+        try:
+            undelete(path)
+            return 'Restaurado'
+        except Exception as e:
+            return f'Error: {str(e)}'
